@@ -16,7 +16,7 @@ timezone: America/New_York
 
 title: Dan Dean # the main title
 
-tagline: A cybersecuirty focused software developer # it will display as the sub-title
+tagline: A cyber secuirty focused software engineer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
