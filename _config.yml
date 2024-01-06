@@ -41,11 +41,11 @@ social:
   email: Dandean44523@gmail.com 
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/n/a # change to your twitter homepage
+    # - https://twitter.com/n/a # change to your twitter homepage
+    - https://www.linkedin.com/in/daniel-dean-888b231b1/
     - https://github.com/dandeandean # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
 
 google_site_verification: # fill in to your verification string
 
