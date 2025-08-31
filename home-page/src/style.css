@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Limelight, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,7 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   margin: 0;
   display: flex;
@@ -26,6 +25,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: Oi, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 #app {
@@ -50,26 +52,35 @@ h1 {
   filter: drop-shadow(0 0 2em #3178c6aa);
 }
 
+.header {
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  position: absolute;
+  justify-content: center;
+  /* border: .2em solid black; */
+  top: 0;
+}
+
 .card {
   padding: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
+  min-height: 30vh;
   background-color: #f4f0db;
   border-radius: 15px;
-  border: 5px solid black;
-  font-size: 1em;
+  border: .2em solid black;
+  font-size: 1.5em;
   font-weight: 500;
   font-family: inherit;
   box-shadow: 12px 17px 0px #636b2f;
+  transition: box-shadow 1s ease-in-out, transform 1s ease-in-out;
 }
 
 .card:hover {
-  transition: transform 0.25s ease-in-out;
-  transition: box-shadow 0.25s ease-in-out;
   transform: scale(1.02);
-  box-shadow: 13px 18px 1px #636b2f;
+  box-shadow: 12px 17px 3px #636b2f;
 }
 
 .read-the-docs {

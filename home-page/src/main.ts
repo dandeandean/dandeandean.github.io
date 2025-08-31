@@ -2,12 +2,16 @@ import './style.css';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-    <h1>Dan Dean, Dean</h1>
+    <div class="header">
+      <h1>
+        Welcome to my site!
+      </h1>
+    </div>
     <div class="card">
       <p>
-        Welcome to my site!
-        I am currently working as a DevOps engineer building robust backends.
-        Don't be alarmed if you find me tinkering on random things.
+        Hey there, thanks for stopping by!
+        I'm a DevOps engineer focused on building powerful back-ends.
+        I'm also passionate about side projects, so you'll see a mix of professional work and personal experiments here.
       </p>
     </div>
   </div>
