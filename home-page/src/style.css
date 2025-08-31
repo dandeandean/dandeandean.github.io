@@ -28,7 +28,7 @@ body {
   width: 90%;
   z-index: 1;
   text-align: right;
-  border: dotted;
+  /* border: dotted; */
   position: absolute;
   justify-content: right;
   top: 1em;
