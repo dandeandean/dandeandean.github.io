@@ -12,9 +12,9 @@ function renderHTML() {
     </div>
     <div class="card">
       <p>
-        Welcom to my site, thanks for stopping by!
-        I'm a DevOps engineer focused on building powerful back-ends.
-        I'm also passionate about side projects, so you'll see a mix of professional work and personal experiments here.
+        Welcome to my site, thanks for stopping by!
+        I'm currently working as DevOps engineer focused on building reliable back-ends.
+        You can find my side projects on my <a href="https://github.com/dandeandean">personal Github account</a>.
       </p>
     </div>
   </div>
