@@ -13,7 +13,7 @@ function renderHTML() {
     <div class="card">
       <p>
         Welcome to my site, thanks for stopping by!
-        I'm currently working as DevOps engineer focused on building reliable back-ends.
+        I'm a DevOps engineer focused on building reliable back-ends.
         You can find my side projects on my <a href="https://github.com/dandeandean">personal Github account</a>.
       </p>
     </div>
