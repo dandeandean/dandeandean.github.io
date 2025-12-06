@@ -6,20 +6,28 @@
   };
 
   outputs =
-    { self, nixpkgs }:
+    { self, nixpkgs }@inputs:
     let
-      # on mac "aarch64-darwin";
-      system = builtins.getEnv "NIX_SYSTEM";
-      pkgs = import nixpkgs { inherit system; };
+      # Supported systems for your flake packages, shell, etc.
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          zola
-        ];
-        shellHook = ''
-          echo "Zola version $(zola --version)"
-        '';
-      };
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              zola
+            ];
+          };
+        }
+      );
     };
 }
