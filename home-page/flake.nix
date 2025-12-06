@@ -8,7 +8,7 @@
   outputs =
     { self, nixpkgs }:
     let
-      system = builtins.currentSystem;
+      system = "aarch64-darwin";
     in
     {
       packages.${system}.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
