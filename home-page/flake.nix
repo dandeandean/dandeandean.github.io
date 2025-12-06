@@ -9,9 +9,8 @@
     { self, nixpkgs }:
     let
       system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      pkgs.${system}.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+      packages.${system}.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
     };
 }
