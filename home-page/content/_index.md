@@ -1,11 +1,10 @@
 +++
-title = "Home"
+title = "DDD's Blog"
 [extra]
 framed = true
 section_path = "blog/_index.md"
 max_posts = 5
 +++
 
-# Hello World
-I'm a software engineer with a passion for safe programming languages,
-distributed systems, computer graphics, and cryptography. I build open source
+# Welcome
+I'm a avid tinkerer working as a DevOps Engineer & hope to share some of that in this [weblog](https://en.wiktionary.org/wiki/blog).

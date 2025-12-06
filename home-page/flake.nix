@@ -9,8 +9,16 @@
     { self, nixpkgs }:
     let
       system = "aarch64-darwin";
+      pkgs = import nixpkgs { inherit system; };
     in
     {
-      packages.${system}.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          zola
+        ];
+        shellHook = ''
+          echo "Zola version $(zola --version)"
+        '';
+      };
     };
 }
