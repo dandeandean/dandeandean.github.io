@@ -8,7 +8,8 @@
   outputs =
     { self, nixpkgs }:
     let
-      system = "aarch64-darwin";
+      # on mac "aarch64-darwin";
+      system = builtins.getEnv "NIX_SYSTEM";
       pkgs = import nixpkgs { inherit system; };
     in
     {

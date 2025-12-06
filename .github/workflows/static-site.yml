@@ -32,6 +32,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build Site
+        env:
+          NIX_SYSTEM: x86_64-linux
         run: |
           cd home-page
           nix develop --command zola build
