@@ -1,8 +1,6 @@
 {
   description = "A very basic flake";
-
   inputs = { nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; };
-
   outputs = { self, nixpkgs }@inputs:
     let
       # Supported systems for your flake packages, shell, etc.
