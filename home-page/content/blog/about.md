@@ -14,8 +14,8 @@ Good question.
 I'm hoping to write down some of my thoughts on computers as I white-knuckle it into the future.
 
 Recently I've been interested in the following:
-- Nix
-- Embedded Development
+- Distributed Systems
+- Linux, Nix, et al.
 - Endurance/Strength Training
 
 ### Terminus
