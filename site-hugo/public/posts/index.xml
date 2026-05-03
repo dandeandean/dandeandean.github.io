@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Dan Dean</title>
     <link>http://localhost:1313/posts/</link>
@@ -13,32 +13,21 @@
       <link>http://localhost:1313/posts/k3stailnet/</link>
       <pubDate>Mon, 02 Mar 2026 08:59:36 -0400</pubDate>
       <guid>http://localhost:1313/posts/k3stailnet/</guid>
-      <description>&lt;p&gt;I set my home lab is set up with K3s.
-This is great, but I&amp;rsquo;d like to access it from not just inside my dungeon.&lt;/p&gt;
-&lt;p&gt;To make this happen, I set up the network with &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt;.
-With a NixOS, this is dirt-simple:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-nix&#34; data-lang=&#34;nix&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{ lib&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt; }: {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  options &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mkEnableOption &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Enable Tailscale&amp;#34;&lt;/span&gt;; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { services&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I added the Tailnet IP to the  &lt;code&gt;~/.kube/config&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;v1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;clusters&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- &lt;span style=&#34;color:#f92672&#34;&gt;cluster&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;server&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;https://&amp;lt;Tailnet IP&amp;gt;:6443&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;default&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;kubectl get nodes&lt;/code&gt;&amp;hellip;&lt;/p&gt;</description>
+      <description>&lt;p&gt;I set my home lab is set up with K3s.&#xA;This is great, but I&amp;rsquo;d like to access it from not just inside my dungeon.&lt;/p&gt;&#xA;&lt;p&gt;To make this happen, I set up the network with &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt;.&#xA;With a NixOS, this is dirt-simple:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-nix&#34; data-lang=&#34;nix&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{ lib&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt; }: {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  options &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mkEnableOption &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Enable Tailscale&amp;#34;&lt;/span&gt;; };&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { services&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable; };&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I added the Tailnet IP to the  &lt;code&gt;~/.kube/config&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;v1&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;clusters&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- &lt;span style=&#34;color:#f92672&#34;&gt;cluster&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;server&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;https://&amp;lt;Tailnet IP&amp;gt;:6443&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;default&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;kubectl get nodes&lt;/code&gt;&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Sun, 11 Jan 2026 08:59:36 -0400</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description></description>
     </item>
     <item>
       <title>NixOS on Asahi</title>
       <link>http://localhost:1313/posts/nixos-asahi/</link>
       <pubDate>Sun, 11 Jan 2026 08:59:36 -0400</pubDate>
       <guid>http://localhost:1313/posts/nixos-asahi/</guid>
-      <description>&lt;p&gt;I ran out of space on my 2020 Macbook Pro M1.
-I&amp;rsquo;m not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.
-And if I was factory resetting it, I might as well boot it with Linux.&lt;/p&gt;
-&lt;p&gt;I spent some time (less than a week) on the &lt;a href=&#34;https://asahilinux.org/fedora/&#34;&gt;Asahi Fedora Remix&lt;/a&gt;.
-Before this, I was using &lt;a href=&#34;https://github.com/nix-darwin/nix-darwin&#34;&gt;Nix Darwin&lt;/a&gt;, but Nix isn&amp;rsquo;t available on Fedora.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I ran out of space on my 2020 Macbook Pro M1.&#xA;I&amp;rsquo;m not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.&#xA;And if I was factory resetting it, I might as well boot it with Linux.&lt;/p&gt;&#xA;&lt;p&gt;I spent some time (less than a week) on the &lt;a href=&#34;https://asahilinux.org/fedora/&#34;&gt;Asahi Fedora Remix&lt;/a&gt;.&#xA;Before this, I was using &lt;a href=&#34;https://github.com/nix-darwin/nix-darwin&#34;&gt;Nix Darwin&lt;/a&gt;, but Nix isn&amp;rsquo;t available on Fedora.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

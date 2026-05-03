@@ -11,6 +11,9 @@
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-03-02T08:59:36-04:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/posts/hello-world/</loc>
+    <lastmod>2026-01-11T08:59:36-04:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/nixos-asahi/</loc>
     <lastmod>2026-01-11T08:59:36-04:00</lastmod>
   </url><url>

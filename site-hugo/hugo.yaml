@@ -32,8 +32,6 @@ params:
     url: "https://github.com/dandeandean"
   - name: LinkedIn
     url: "https://www.linkedin.com/in/daniel-dean-888b231b1/"
-  - name: Resume
-    url: "https://github.com/dandeandean"
 languages:
   en:
     languageName: "English"
@@ -50,5 +48,8 @@ languages:
       - name: Posts
         url: posts
         weight: 10
+      - name: Resume
+        url: resume/dean-resume.pdf
+        weight: 15
       - name: Source
         url: https://github.com/dandeandean/dandeandean.github.io
