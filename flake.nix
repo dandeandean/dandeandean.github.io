@@ -23,8 +23,12 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         serveScript = pkgs.writeShellScriptBin "hugo-serve" ''
-          exec ${pkgs.hugo}/bin/hugo server -D
+          cd site-hugo && exec ${pkgs.hugo}/bin/hugo server -D
         '';
+        serveApp = {
+          type = "app";
+          program = "${serveScript}/bin/hugo-serve";
+        };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -50,12 +54,9 @@
           '';
         };
 
-        apps.serve = {
-          type = "app";
-          program = "${serveScript}/bin/hugo-serve";
-        };
+        apps.serve = serveApp;
 
-        apps.default = self.apps.${system}.serve;
+        apps.default = serveApp;
       }
     );
 }

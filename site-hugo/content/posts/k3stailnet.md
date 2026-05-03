@@ -1,6 +1,6 @@
 ---
 date: '2026-03-02T08:59:36-04:00'
-draft: true
+draft: false
 title: 'K3s over Tailnet'
 ---
 
