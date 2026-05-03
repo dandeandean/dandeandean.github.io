@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>NixOS on Asahi | Dan Dean</title>
+<meta name="keywords" content="">
+<meta name="description" content="I ran out of space on my 2020 Macbook Pro M1.
+I&rsquo;m not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.
+And if I was factory resetting it, I might as well boot it with Linux.
+I spent some time (less than a week) on the Asahi Fedora Remix.
+Before this, I was using Nix Darwin, but Nix isn&rsquo;t available on Fedora.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/nixos-asahi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a1a1b118b3e83435265dc39da18e54244bcc0e5481d1d034aadc0c899c51e15c.css" integrity="sha256-oaGxGLPoNDUmXcOdoY5UJEvMDlSB0dA0qtwMiZxR4Vw=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/nixos-asahi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Dan Dean (Alt + H)">Dan Dean</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/dandeandean/dandeandean.github.io" title="Source">
+                    <span>Source</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      NixOS on Asahi
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-01-11 08:59:36 -0400 -0400'>January 11, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>I ran out of space on my 2020 Macbook Pro M1.
+I&rsquo;m not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.
+And if I was factory resetting it, I might as well boot it with Linux.</p>
+<p>I spent some time (less than a week) on the <a href="https://asahilinux.org/fedora/">Asahi Fedora Remix</a>.
+Before this, I was using <a href="https://github.com/nix-darwin/nix-darwin">Nix Darwin</a>, but Nix isn&rsquo;t available on Fedora.</p>
+<p>The folks in the nix community put together some solid documention about booting <a href="https://github.com/nix-community/nixos-apple-silicon">NixOS on Apple Silicon</a>.
+I figured it was worth a shot.</p>
+<h1 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h1>
+<p>The only significant change that I made was the initial install.
+Since I had already installed Fedora, I figured I could just install NixOS right onto that disk partition.</p>
+<p>I built the ISO from scratch, made some configuration changes as per the <code>nixos-apple-silicon</code> docs, &amp; installing the OS went sideways&hellip;</p>
+<h3 id="power-outage">Power outage<a hidden class="anchor" aria-hidden="true" href="#power-outage">#</a></h3>
+<p>During the initial install, my machine died.
+Forgot to plug it in.
+Luckily, all of the changes were already written to disk, so I could just install from the <code>/etc/nixos/configuration.nix</code> file after mounting the disk again.
+After some time, the install went through fine.</p>
+<p>Restart&hellip; And nothing :(</p>
+<h2 id="das-u-boot-purgatory">Das U-Boot Purgatory<a hidden class="anchor" aria-hidden="true" href="#das-u-boot-purgatory">#</a></h2>
+<p>More specifically, I was stuck in the boot menu.
+Naturally, this was caused by me going off-script, installing NixOS over the Fedora install.</p>
+<p>Now I&rsquo;ve been a Linux enjoyer for while, but I haven&rsquo;t played much with any boot menus.
+From what I can tell, however, I needed to point to the new /boot partition I made for NixOS.
+Simple enough.</p>
+<p>In U boot, we can <code>printenv</code>, which tells us everything we need to know.</p>
+<p>The docs for the <code>bootflow</code> command can be found <a href="https://docs.u-boot.org/en/latest/usage/cmd/bootflow.html#bootflow-select">here</a></p>
+<p>The <code>bootcmd</code> was <code>bootflow scan -b</code>.
+Hmmm&hellip;</p>
+<p>With a <code>bootflow list</code>, we can see what we&rsquo;re working with:</p>
+<pre tabindex="0"><code>Seq  Method   State   Uclass   Part   Name                       FileName
+-------------------------------------------------------------------------------------------
+0    efi_mgr  ready   (none)      0   &lt;NULL&gt;
+1    efi      ready   nvme        4   nvme@27bccc000.blk#1.boot  /EFI/BOOT/BOOTARG64.EFI
+-------------------------------------------------------------------------------------------
+</code></pre><p>This looks promising. This issue is, it doesn&rsquo;t mean anything to me.
+It seemed clear that the <code>&lt;Null&gt;</code> and missing <code>FileName</code> were issues.
+So I tried booting off of the first bootflow and that did the trick.</p>
+<pre tabindex="0"><code>bootflow select 1
+bootflow boot
+</code></pre><p>So it seems like we needed to boot the 1st bootflow instead of the 0th.
+This aligns with the docs for the <code>-b</code> option:</p>
+<pre tabindex="0"><code>-b
+
+    Boot each valid bootflow as it is scanned. Typically only the first bootflow matters, since by then the system boots in the OS and U-Boot is no-longer running. bootflow scan -b is a quick way to boot the first available OS. A valid bootflow is one that made it all the way to the loaded state. Note that if -m is provided as well, booting is delayed until the user selects a bootflow.
+</code></pre><p>That means we needed to change the bootcmd to the following:</p>
+<pre tabindex="0"><code>setenv bootcmd &#34;bootflow scan ; bootflow select 1 ; bootflow boot&#34;
+</code></pre><p>Then <code>saveenv</code>, naturally.</p>
+<h2 id="attempt-ii">Attempt II<a hidden class="anchor" aria-hidden="true" href="#attempt-ii">#</a></h2>
+<p>I also have a 2020 Mac Mini with the M1 chip.
+I figured I can&rsquo;t have just one of them on Asahi &amp; the other on MacOS, that&rsquo;d be cruel.
+Also, I already had the bootable USB for NixOS on Asahi.</p>
+<p>This time around it was much smoother because there wasn&rsquo;t an existing Fedora partition.</p>
+<h2 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h2>
+<p>Thanks to the reproducibility of Nix, I was able to reuse the majority of my configuration from the previous host.
+The code for this can be found in my <a href="https://github.com/dandeandean/nixos-config">nixos-config</a> repo.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Dan Dean</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
