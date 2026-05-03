@@ -1,3 +1,2 @@
-themes/*
-result/*
-public/*
+site-hugo/themes/*
+site-hugo/themes

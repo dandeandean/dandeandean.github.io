@@ -4,10 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    congo = {
-      url = "github:jpanther/congo";
-      flake = false;
-    };
   };
 
   outputs =
@@ -15,7 +11,6 @@
       self,
       nixpkgs,
       flake-utils,
-      congo,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -23,8 +18,6 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         serveScript = pkgs.writeShellScriptBin "hugo-serve" ''
-          mkdir -p themes
-          ln -snf ${congo} themes/congo
           exec ${pkgs.hugo}/bin/hugo server -D
         '';
       in
@@ -34,10 +27,7 @@
             pkgs.hugo
             serveScript
           ];
-          shellHook = ''
-            mkdir -p themes
-            ln -snf ${congo} themes/congo
-          '';
+          shellHook = "";
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
@@ -45,8 +35,6 @@
           src = ./.;
           buildInputs = [ pkgs.hugo ];
           buildPhase = ''
-            mkdir -p themes
-            ln -snf ${congo} themes/congo
             hugo --minify
           '';
           installPhase = "cp -r public $out";

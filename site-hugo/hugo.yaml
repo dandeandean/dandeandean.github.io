@@ -1,0 +1,54 @@
+baseURL: https://dan.deandean.net/
+locale: en-us
+title: Dan Dean
+theme: ["PaperMod"]
+params:
+  profileMode:
+    enabled: false
+    title: "Dan Dean"
+    subtitle: "Cloud Native Engineer" 
+    imageUrl: "https://media.licdn.com/dms/image/v2/D4E03AQFYXobeC7jrCw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1725187214049?e=1779321600&v=beta&t=SXTN5rtmW432hLXZzm6vV9qDfh0CDr7TOFkz9kaGdqo" # optional
+    imageTitle: "Handsom (or so his mother tells him) man leaning against a railing dressed in his best green crewneck"
+    imageWidth: 120
+    imageHeight: 120
+    buttons:
+    - name: Blog
+      url: "/posts"
+  homeInfoParams:
+    enabled: true
+    Title: Wait a Minute, Who Are You?
+    Content: |
+      Good Question; fair and concise... I'm Dan Dean. 
+
+      I'm working as a DevOps engineer, but I joke that a more accurate
+      title would be DevSecRelFinOps Engineer & SRE (I bill by the syllable).
+      My team and I solve all of the behind-the-scenes, cloud-native issues that we
+      face at our company to keep the applications running securly and reliably in the cloud.
+      In my free time I enjoy learning new technologies.
+      Sometimes I write about my findings in my blog.
+
+  socialIcons:
+  - name: Github
+    url: "https://github.com/dandeandean"
+  - name: LinkedIn
+    url: "https://www.linkedin.com/in/daniel-dean-888b231b1/"
+  - name: Resume
+    url: "https://github.com/dandeandean"
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+      - name: Archive
+        url: archives
+        weight: 5
+      - name: Posts
+        url: posts
+        weight: 10
+      - name: Source
+        url: https://github.com/dandeandean/dandeandean.github.io

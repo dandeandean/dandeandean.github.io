@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "congo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1771635932,
-        "narHash": "sha256-GguCwm3iwAeEl0XO6+aO3r2AXVgRceXtTR6kQe0KLSE=",
-        "owner": "jpanther",
-        "repo": "congo",
-        "rev": "b426bf91b0a90edbb4063bf4efd463536a1f99fe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jpanther",
-        "repo": "congo",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -52,7 +36,6 @@
     },
     "root": {
       "inputs": {
-        "congo": "congo",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       }

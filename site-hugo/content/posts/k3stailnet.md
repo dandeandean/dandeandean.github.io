@@ -1,12 +1,8 @@
-+++
-title = "K3s over Tailnet"
-description = "Home Away From Home Lab"
-sort_by = "date"
-paginate_by = 5
-insert_anchor_links = "right"
-date = "2026-03-02"
-+++
-# K3s over Tailnet
+---
+date: '2026-03-02T08:59:36-04:00'
+draft: true
+title: 'K3s over Tailnet'
+---
 
 I set my home lab is set up with K3s.
 This is great, but I'd like to access it from not just inside my dungeon.
