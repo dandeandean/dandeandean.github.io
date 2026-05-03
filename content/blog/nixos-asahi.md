@@ -7,6 +7,7 @@ insert_anchor_links = "right"
 date = "2026-01-11"
 +++
 
+# NixOS on Asahi
 
 I ran out of space on my 2020 Macbook Pro M1.
 I'm not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.

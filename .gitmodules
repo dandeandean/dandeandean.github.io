@@ -1,6 +1,0 @@
-[submodule "home-page/themes/terminus"]
-	path = home-page/themes/terminus
-	url = https://github.com/ebkalderon/terminus.git
-[submodule "home-page/themes/boring"]
-	path = home-page/themes/boring
-	url = https://github.com/ssiyad/boring

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DDD&#39;s Blog</title>
+    <link>http://localhost:41959/</link>
+    <description>Recent content on DDD&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:41959/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K3s over Tailnet</title>
+      <link>http://localhost:41959/blog/k3stailnet/</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41959/blog/k3stailnet/</guid>
+      <description>&lt;h1 id=&#34;k3s-over-tailnet&#34; class=&#34;relative group&#34;&gt;K3s over Tailnet &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#k3s-over-tailnet&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I set my home lab is set up with K3s.&#xA;This is great, but I&amp;rsquo;d like to access it from not just inside my dungeon.&lt;/p&gt;&#xA;&lt;p&gt;To make this happen, I set up the network with &lt;a href=&#34;https://tailscale.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Tailscale&lt;/a&gt;.&#xA;With a NixOS, this is dirt-simple:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-nix&#34; data-lang=&#34;nix&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{ lib&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt; }: {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  options &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mkEnableOption &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Enable Tailscale&amp;#34;&lt;/span&gt;; };&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { services&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; config&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tailscale&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable; };&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I added the Tailnet IP to the  &lt;code&gt;~/.kube/config&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NixOS on Asahi</title>
+      <link>http://localhost:41959/blog/nixos-asahi/</link>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41959/blog/nixos-asahi/</guid>
+      <description>&lt;h1 id=&#34;nixos-on-asahi&#34; class=&#34;relative group&#34;&gt;NixOS on Asahi &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#nixos-on-asahi&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I ran out of space on my 2020 Macbook Pro M1.&#xA;I&amp;rsquo;m not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.&#xA;And if I was factory resetting it, I might as well boot it with Linux.&lt;/p&gt;&#xA;&lt;p&gt;I spent some time (less than a week) on the &lt;a href=&#34;https://asahilinux.org/fedora/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Asahi Fedora Remix&lt;/a&gt;.&#xA;Before this, I was using &lt;a href=&#34;https://github.com/nix-darwin/nix-darwin&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Nix Darwin&lt;/a&gt;, but Nix isn&amp;rsquo;t available on Fedora.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What</title>
+      <link>http://localhost:41959/blog/about/</link>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41959/blog/about/</guid>
+      <description>&lt;h1 id=&#34;what&#34; class=&#34;relative group&#34;&gt;What? &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#what&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Good question.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m hoping to write down some of my thoughts on computers as I white-knuckle it into the future.&lt;/p&gt;&#xA;&lt;p&gt;Recently I&amp;rsquo;ve been interested in the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Distributed Systems&lt;/li&gt;&#xA;&lt;li&gt;Linux, Nix, et al.&lt;/li&gt;&#xA;&lt;li&gt;Endurance/Strength Training&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;terminus&#34; class=&#34;relative group&#34;&gt;Terminus &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#terminus&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;Shout out to &lt;a href=&#34;https://eyalkalderon.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Eyal Kalderon&lt;/a&gt; for the &lt;a href=&#34;https://github.com/getzola/zola?tab=readme-ov-file&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Zola&lt;/a&gt; website theme.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

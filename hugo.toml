@@ -1,0 +1,13 @@
+baseURL = "https://dan.deandean.net"
+languageCode = "en-us"
+title = "DDD's Blog"
+theme = "congo"
+
+[params]
+  description = "DevOps Engineer & Tinkerer"
+  
+  # Congo specific params
+  mainSections = ["blog"]
+
+[author]
+  name = "DDD"
