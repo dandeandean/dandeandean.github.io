@@ -1,12 +1,8 @@
-+++
-title = "NixOS on Asahi"
-description = "Normal MacBook"
-sort_by = "date"
-paginate_by = 5
-insert_anchor_links = "right"
-date = "2026-01-11"
-+++
-
+---
+date: '2026-01-11T08:59:36-04:00'
+draft: true
+title: 'NixOS on Asahi'
+---
 
 I ran out of space on my 2020 Macbook Pro M1.
 I'm not sure what it says about what kind of person I am, but to me that just meant I had to factory reset it.
