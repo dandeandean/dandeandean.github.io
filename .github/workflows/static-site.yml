@@ -32,10 +32,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build Site
-        env:
-          NIX_SYSTEM: x86_64-linux
-        run: |
-          nix build .#default
+        run: nix build .#default
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

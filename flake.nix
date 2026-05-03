@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    papermod = {
+      url = "github:adityatelange/hugo-PaperMod";
+      flake = false;
+    };
   };
 
   outputs =
@@ -11,6 +15,7 @@
       self,
       nixpkgs,
       flake-utils,
+      papermod,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -31,13 +36,18 @@
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
-          name = "dandeandean-github-io";
+          name = "dan-deandean";
           src = ./.;
           buildInputs = [ pkgs.hugo ];
           buildPhase = ''
+            mkdir -p site-hugo/themes
+            ln -s ${papermod} site-hugo/themes/PaperMod
+            cd site-hugo
             hugo --minify
           '';
-          installPhase = "cp -r public $out";
+          installPhase = ''
+            cp -r public $out
+          '';
         };
 
         apps.serve = {
