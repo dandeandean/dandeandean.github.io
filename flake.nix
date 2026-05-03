@@ -23,7 +23,10 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         serveScript = pkgs.writeShellScriptBin "hugo-serve" ''
-          cd site-hugo && exec ${pkgs.hugo}/bin/hugo server -D
+          if [ -d site-hugo ] ; then
+            cd site-hugo
+          fi
+          exec ${pkgs.hugo}/bin/hugo server --disableFastRender --ignoreCache
         '';
         serveApp = {
           type = "app";
