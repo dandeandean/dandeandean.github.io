@@ -32,6 +32,8 @@ params:
     url: "https://github.com/dandeandean"
   - name: LinkedIn
     url: "https://www.linkedin.com/in/daniel-dean-888b231b1/"
+  - name: Resume
+    url: "https://github.com/dandeandean"
 languages:
   en:
     languageName: "English"
