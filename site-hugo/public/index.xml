@@ -15,9 +15,9 @@
       <guid>http://localhost:1313/posts/krang-bebop-rocksteady/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m no gamer, but I am a digital masochist; so when I got the chance to trade an old gaming console for 3 Acer Revo Build M1-601s, I jumped at the opportunity.&lt;/p&gt;
 &lt;p&gt;They came with Windows and this just wouldn&amp;rsquo;t do.
-I&amp;rsquo;ve booted Linux (specifically Nix) on a wide variety of devices, so I figured there couldn&amp;rsquo;t be too much to these unassuming mini PCs.
+I&amp;rsquo;ve booted Linux (specifically NixOS) on a wide variety of devices, so I figured there couldn&amp;rsquo;t be too much to these unassuming mini PCs.
 I was wrong.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Krang,Bebop, &amp;amp; Rocksteady&#34; loading=&#34;lazy&#34; src=&#34;../images/krang-bebop-rocksteady.jpg&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img alt=&#34;Krang,Bebop, &amp;amp; Rocksteady&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/static/krang-bebop-rocksteady.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>K3s over Tailnet</title>
