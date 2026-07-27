@@ -13,26 +13,26 @@ I was wrong.
 ![Krang,Bebop, & Rocksteady](/static/krang-bebop-rocksteady.jpg)
 
 ## Booting From a USB
-I've codified the steps I used to create the live NixOS USB [here](https://github.com/dandeandean/nixos-config/tree/main/hack/primordial-soup).
+I've codified the steps I use to create the live USBs [here](https://github.com/dandeandean/nixos-config/tree/main/hack/primordial-soup).
 Typically this process is dirt simple.
 With the Acer Nodes, there were a few gotchas:
-- Turn on `F12` boot
-- Disable secure boot
+- Turning on `F12` boot
+- Disabling secure boot
 
 Naturally, in order to disable secure boot, you need to set a supervisor password.
-On a fresh startup, still no USB boot option.
+After going through these steps, there was still no USB boot option.
 
 For sanity, I checked my live USB against another machine I had around.
 It worked there, so it seemed like a compatibility issue with the USB driver.
 
-After running to the USB store, buying a pack of USBs (2.0 this time), & flashing one again, we could could boot off the USB.
+After running to the USB store, buying a pack of USBs (2.0 this time), & flashing one again, we could could boot into the NixOS installer.
 
 ### Recap
-- Spam `F2` and `del` key at startup to boot into the BIOS menu
-- Set a Supervisor password under the security tab (don't forget this)
-- `F12` boot -> Enabled
-- Secure Boot -> Disabled
-- Disable Supervisor password (or never forget it)
+- Hit `F2` and `del` keys at startup to boot into the BIOS menu
+- Set a supervisor password under the security tab (don't forget this)
+- Set `F12` boot to enabled
+- Set secure boot to disabled
+- Disable supervisor password (or never forget it)
 - Spam `F12` on restart
 
 ## Installing NixOS
