@@ -45,14 +45,14 @@ We can do this with `modprobe`:
 ```bash
 sudo modprobe mmc_block
 ```
-Voila, we see the persistent storage and can proceed with the installation as normal.
-Finish the install, restart... And no bootable install.
+Voila, we see the persistent storage and can proceed with the installation as normal!
+Finish the install, restart... And the boot fails. Yikes.
 
 ### Back to the BIOS
 We were getting the message no boot devices found.
-After some trial and error, I vaguely remember the trusted boots being an issue for some other folks.
+I vaguely remember needing to trust the boot device.
 
-We just need to mark the `grubx64.efi` file as trusted in BIOS.
+We just need to mark the `efi` file as trusted in BIOS.
 In order to do this we need to:
 - Set a supervisor password (remember it)
 - Turn on secure boot
@@ -63,11 +63,10 @@ In order to do this we need to:
 After this, we can see NixOS start the boot process!
 
 
-Smooth sailing from here, right? Wrong again.
+Smooth sailing from here, right? Wrong.
 
 The boot is stuck mounting the emmc drive.
-
-After some (a lot) of tinkering with the boot parameters, it occurred to me we need the MMC module not only at startup, but at boot time as well.
+After some (a lot) of tinkering with the boot parameters, we need the mmc module (and others from the hardware scan) not only in the `initrd.availableKernelModules`, but `initrd.kernelModules` as well.
 
 > nixos-enter was crucial for debugging the bad configuration
 
@@ -76,6 +75,8 @@ The final, working, NixOS configuration used the following kernel modules:
 boot.initrd.availableKernelModules = [ "mmc_core" "mmc_block" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci" "sdhci_pci" "sdhci_acpi" "rtsx_pci_sdmmc" ];
 boot.initrd.kernelModules = [ "mmc_core" "mmc_block" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci" "sdhci_pci" "sdhci_acpi" "rtsx_pci_sdmmc" ];
 ```
+> probably not all of these kernelModules are needed for a bootable device
+
 After this we're able to boot up just fine.
 The final configuration can be found in my [NixOS config repo](https://github.com/dandeandean/nixos-config/tree/main/hosts/clones).
 
@@ -89,11 +90,11 @@ In accordance with the theme of my home lab being TMNT characters these machines
 - Restart into BIOS
 - Reset password & enable secure boot
 - Trust the boot partition (specifically `/EMMC/EFI/NixOs-boot/grubx64.efi` in my case)
-- Unset password + disable secure boot
+- Unset password & disable secure boot
 
 > Note: After a node has been fully powered off for some time, they will reset the
 > secure boot settings to default.
-> We can use the same steps above to mark the device as trusted.
+> We can use the same steps above to mark the device as trusted again.
 
 ### Appendix: People Complaining About the Revo Build M1-601 Online
 - [Stack Overflow](https://askubuntu.com/questions/1135878/installing-ubuntu-on-an-emmc-how-can-it-be-so-hard)

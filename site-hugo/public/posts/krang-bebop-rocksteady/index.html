@@ -176,12 +176,12 @@ Not great.</p>
 <p>After some googling, it seems like we just need to load in the <code>mmc_block</code> kernel module.
 We can do this with <code>modprobe</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo modprobe mmc_block
-</span></span></code></pre></div><p>Voila, we see the persistent storage and can proceed with the installation as normal.
-Finish the install, restart&hellip; And no bootable install.</p>
+</span></span></code></pre></div><p>Voila, we see the persistent storage and can proceed with the installation as normal!
+Finish the install, restart&hellip; And the boot fails. Yikes.</p>
 <h3 id="back-to-the-bios">Back to the BIOS<a hidden class="anchor" aria-hidden="true" href="#back-to-the-bios">#</a></h3>
 <p>We were getting the message no boot devices found.
-After some trial and error, I vaguely remember the trusted boots being an issue for some other folks.</p>
-<p>We just need to mark the <code>grubx64.efi</code> file as trusted in BIOS.
+I vaguely remember needing to trust the boot device.</p>
+<p>We just need to mark the <code>efi</code> file as trusted in BIOS.
 In order to do this we need to:</p>
 <ul>
 <li>Set a supervisor password (remember it)</li>
@@ -191,16 +191,19 @@ In order to do this we need to:</p>
 <li>Unset the supervisor password</li>
 </ul>
 <p>After this, we can see NixOS start the boot process!</p>
-<p>Smooth sailing from here, right? Wrong again.</p>
-<p>The boot is stuck mounting the emmc drive.</p>
-<p>After some (a lot) of tinkering with the boot parameters, it occurred to me we need the MMC module not only at startup, but at boot time as well.</p>
+<p>Smooth sailing from here, right? Wrong.</p>
+<p>The boot is stuck mounting the emmc drive.
+After some (a lot) of tinkering with the boot parameters, we need the mmc module (and others from the hardware scan) not only in the <code>initrd.availableKernelModules</code>, but <code>initrd.kernelModules</code> as well.</p>
 <blockquote>
 <p>nixos-enter was crucial for debugging the bad configuration</p>
 </blockquote>
 <p>The final, working, NixOS configuration used the following kernel modules:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>boot<span style="color:#f92672">.</span>initrd<span style="color:#f92672">.</span>availableKernelModules <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;mmc_core&#34;</span> <span style="color:#e6db74">&#34;mmc_block&#34;</span> <span style="color:#e6db74">&#34;xhci_pci&#34;</span> <span style="color:#e6db74">&#34;usb_storage&#34;</span> <span style="color:#e6db74">&#34;usbhid&#34;</span> <span style="color:#e6db74">&#34;sd_mod&#34;</span> <span style="color:#e6db74">&#34;sdhci&#34;</span> <span style="color:#e6db74">&#34;sdhci_pci&#34;</span> <span style="color:#e6db74">&#34;sdhci_acpi&#34;</span> <span style="color:#e6db74">&#34;rtsx_pci_sdmmc&#34;</span> ];
 </span></span><span style="display:flex;"><span>boot<span style="color:#f92672">.</span>initrd<span style="color:#f92672">.</span>kernelModules <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;mmc_core&#34;</span> <span style="color:#e6db74">&#34;mmc_block&#34;</span> <span style="color:#e6db74">&#34;xhci_pci&#34;</span> <span style="color:#e6db74">&#34;usb_storage&#34;</span> <span style="color:#e6db74">&#34;usbhid&#34;</span> <span style="color:#e6db74">&#34;sd_mod&#34;</span> <span style="color:#e6db74">&#34;sdhci&#34;</span> <span style="color:#e6db74">&#34;sdhci_pci&#34;</span> <span style="color:#e6db74">&#34;sdhci_acpi&#34;</span> <span style="color:#e6db74">&#34;rtsx_pci_sdmmc&#34;</span> ];
-</span></span></code></pre></div><p>After this we&rsquo;re able to boot up just fine.
+</span></span></code></pre></div><blockquote>
+<p>probably not all of these kernelModules are needed for a bootable device</p>
+</blockquote>
+<p>After this we&rsquo;re able to boot up just fine.
 The final configuration can be found in my <a href="https://github.com/dandeandean/nixos-config/tree/main/hosts/clones">NixOS config repo</a>.</p>
 <p>In accordance with the theme of my home lab being TMNT characters these machines will be Krang, Bebop, and Rocksteady.</p>
 <h3 id="recap-1">Recap<a hidden class="anchor" aria-hidden="true" href="#recap-1">#</a></h3>
@@ -215,12 +218,12 @@ The final configuration can be found in my <a href="https://github.com/dandeande
 <li>Restart into BIOS</li>
 <li>Reset password &amp; enable secure boot</li>
 <li>Trust the boot partition (specifically <code>/EMMC/EFI/NixOs-boot/grubx64.efi</code> in my case)</li>
-<li>Unset password + disable secure boot</li>
+<li>Unset password &amp; disable secure boot</li>
 </ul>
 <blockquote>
 <p>Note: After a node has been fully powered off for some time, they will reset the
 secure boot settings to default.
-We can use the same steps above to mark the device as trusted.</p>
+We can use the same steps above to mark the device as trusted again.</p>
 </blockquote>
 <h3 id="appendix-people-complaining-about-the-revo-build-m1-601-online">Appendix: People Complaining About the Revo Build M1-601 Online<a hidden class="anchor" aria-hidden="true" href="#appendix-people-complaining-about-the-revo-build-m1-601-online">#</a></h3>
 <ul>
